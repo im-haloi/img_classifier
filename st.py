@@ -4,6 +4,10 @@ import streamlit as st
 from PIL import Image
 import tensorflow as tf
 import cv2  # OpenCV for image processing
+import os
+
+# Add this line to avoid libGL.so.1 error
+os.environ["PYOPENGL_PLATFORM"] = "egl"
 
 # Load the image classification model (assuming it's a TensorFlow model)
 model = tf.keras.models.load_model("project_01_02.keras")
@@ -45,7 +49,7 @@ def main():
     """
     st.markdown(html_temp, unsafe_allow_html=True)
     
-    uploaded_file = st.file_uploader("Pick an image...[Image size limit: 10MB]", type=["jpg", "jpeg", "png", "bpm"])
+    uploaded_file = st.file_uploader("Pick an image...[Image size limit: 10MB]", type=["jpg", "jpeg", "png", "bmp"])
     result = ""
     if uploaded_file is not None:
         file_size = uploaded_file.size
