@@ -32,8 +32,14 @@ def predict_image_authentication(image):
     
     # Make prediction
     prediction = model.predict(img_array)
-    # Assuming the model has a binary output, adjust as necessary
-    result = "Provided image is most probably AI-generated." if prediction[0][0] <= 0.5 else "Provided image is most probably NOT AI-generated."
+    
+    confidence = prediction[0][0] * 100
+    
+    if confidence <= 50:
+        result = f"Provided image is most probably AI-generated. Model is {100 - confidence:.2f}% sure."
+    else:
+        result = f"Provided image is most probably NOT AI-generated. Model is {confidence:.2f}% sure."
+    
     return result
 
 def main():
