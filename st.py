@@ -4,10 +4,6 @@ import streamlit as st
 from PIL import Image
 import tensorflow as tf
 import cv2  # OpenCV for image processing
-import os
-
-# Add this line to avoid libGL.so.1 error
-os.environ["PYOPENGL_PLATFORM"] = "egl"
 
 # Load the image classification model (assuming it's a TensorFlow model)
 model = tf.keras.models.load_model("project_01_02.keras")
